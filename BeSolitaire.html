@@ -1,0 +1,99 @@
+<HTML>
+<HEAD>
+<TITLE>BeSolitaire v 2.0.5</TITLE>
+</HEAD>
+<BODY BGCOLOR=#FFFFFF>
+<HR>
+<FONT SIZE=6><P>BeSolitaire v 2.0.5</FONT> <FONT SIZE = 3> By: Jason Wrinkle (jwrinkle@utdallas.edu) </FONT></P>
+<HR>
+<FONT SIZE=4><P><B>Description</P></B></FONT><FONT SIZE=2>
+
+<P>This program is a solitaire program that loads, saves, edits, and of course runs solitaire games.  Although I think most of the program is self-explaining, I will briefly expound some of the editable elements of the program.  Version 2 is essentially a rewrite so many things have changed.</P></FONT>
+
+<HR>
+<FONT SIZE=4><B><P>Known Bugs</B></P></FONT><FONT SIZE=2>
+<P><HR>The "deck" pile in the Solitaire layout doesn't quite function as one would expect... this is because of  bug in the min/max cards allowed... this specific transmission will eventually use card "popping" (which hasn't been implemented yet)</P>
+
+<HR>
+<FONT SIZE=4><B><P>Getting Started</B></P></FONT><FONT SIZE=2>
+<P><HR>Before you can do anything in BeSol, you must load a deck... this ensures that piles created
+will have the proper dimensions and loads the bitmaps used for the empty piles.</P>
+
+<P>Once you have loaded a deck, you can either open a saved layout/rule set or you can edit the current layout/rule set (though you won't be able to do much in the rule editor without any piles :))</P>
+
+<FONT SIZE=4><B><P>Game Editing</B></P></FONT><FONT SIZE=2>
+<P>Much has changed in this area between versions.  For starters, I removed replicants from the application; they seemed to be to much for what I needed.  Piles are now moved/copied/edited/deleted from a pop-up menu that appears when you click on a pile in layout edit mode.</P>
+
+<B><U>Pile Editor</B></U>
+
+<B><U><P>Pile ID</B></U>: this is used to help people write intelligible rules for there card games and to help the program identify piles.  These names don't necessarily have to be unique, but when card popping is implemented you might get strange behavior if you don't make them so.  If you edit multiple piles at once, subsequent piles retain the same name with a :# suffix so that piles can posses unique but similar ID's.</P>
+
+<B><U><P>Deal String</B></U>: Defines how cards are initially dealt.  One should be careful that one doesn't exceed the number of cards for the deck they are using.  This feature has been enhanced over the previous version because one can now deal out any sequence of face-up or face-down cards that you would like.  A card that needs to be dealt face-up is represented by a "u", one that is meant to be dealt face-down is represented by a "d."  If you need to deal many cards in a row of the same orientation, you may denote this by preceding the orientation (i.e. u or d) with the pound sign followed by the number of such cards (e.g. #2u deals to face-up cards).</P>
+
+<B><U><P>Required Orientation</B></U>: determines if cards added to are required to be turned face-up or down once they have been received.</P>
+
+<B><U><P>Flip to Match</B></U>: determines if cards added to a pile are flipped if they are not oriented properly (See above).</P>
+
+<B><U><P>Receivable Suit(s)/Value(s) on empty</B></U>: this is a list of the suit ID's and value ID's accepted by the pile when it is empty, a future version will also have a toggle all for these lists... but for now you have to select each one individually</P>
+
+<B><U><P>Face-up/down card offset</B></U>: Defines where to place new cards in relation to the current card.</P>
+
+<B><U><P>Empty on Win</B></U>: Currently not utilized, but it is recommended that you use this in your layouts for future versions.  The intended functionality is that the program will poll the cards to see if they are empty and if all of the piles with empy on win checked are empty then the game is won.</P>
+
+<B><U><P>Points awarded for adding/removing cards</B></U>: this is a positive or negative number to add to the score when cards are added/removed</P>
+
+<B><U><P>Suit/Value Stepping(s)</B></U>: list of the steppings (final suit/value ID - initial suit/value ID); allowed between cards.  (e.g. If SuitSteps is 0, the suit of all subsequent cards must be the same as the current card).  If cycle suit/values is checked then the suit/value stepping list is redundant in that each negative stepping will be the same as a positive one, you should probably choose the stepping that is easiest to see in these cases.  A future version will also have a toggle all for these lists... but for now you have to select each one individually.</P>
+
+<B><U><P>Are Suits/Values Cycled</B></U>: determines whether or not to allow suits/values to wrap-around (e.g. an Ace is before a Two (stepping = 1) and after a King (stepping = -1) if this is checked with the default deck)</P>
+
+<B><U><P>Card Popping</B></U>: determines where cards should be "popped to" on a double click (not implemented yet)</P>
+
+<B><U>Transmission Rule Editor</B></U>
+
+<P>To edit a "Transmission" from one pile to another, check the check box in the right panel (multiple transmissions can be selected at a time)</P>
+
+<B><U><P>Enable Transmission</B></U>: enables cards to be dragged along the checked route(s)</P>
+
+<B><U><P>Update</B></U>: Updates the route(s) checked with the current information</P>
+
+<B><U><P>Block drag/User-Friendly Drag/Messy</B></U>: Not used yet... Block Drag means that cards stay together in one block and is the only functionality that is implemented currently... User Friendly Drag is intended to automatically place cards in a dragged stack in transitional places... Messy allows the UF drag to leave some of the transition cards lying around</P>
+
+<B><U><P>Allowed min/max cards</B></U>: restricts the number of cards that can be dragged around the slected route(s).  If -1 is entered for max/min then the maximum/minimum number of cards is set to the number of cards in the pile being dragged from</P>
+
+<B><U><P>Ordering: sender/receiver/...</B></U>: this behavior will probably be changed slightly in future versions, it currently checks to see if all cards dragged (except the top the drag, it must match the top card of the new pile according to the new pile's rules) follow the rules of the sending/receiving/... pile</P>
+
+<P>If you save/load a cardgame, the filename is placed in the title bar of the window.</P>
+</FONT>
+
+<HR>
+<FONT SIZE=4><B><P>Deck Editing</B></P></FONT><FONT SIZE=2>
+
+<P>To change the style of the card backs (or for that matter the image shown when a pile is empty), one must simply change the contents of the back (or empty) file in the images directory.  Theoretically, any image format for which Be supplies a translator should be usable; however, the only one that I have used is the Windows(TM) bitmap format.  Probably in a future release this process will be replaced with a GUI that allows the user to select the card backing.
+</P>
+<P>To modify the deck used in this program, you will need a resource editor to edit/create the deck resource files which are stored in the decks directory.  I used Interface Elements (an excellent share or freeware program, I am not sure which, you can get it off of BeWare) which is actually extremely simple to use, so beginners who may feel wary of the terms like resources should not be scared (they probably should'nt go around modifying just any old resource either though).  True, I <I>could</I> have spent a while longer and integrate a deck editor; however, I am lazy and the creator of Interface Elements did a very good job.</P>
+<P>To create your own deck, you probably would be best off by editing the resource file included.  The only sections currently used by the program are long, data, CBck (card back), and PBck (pile back); however, I think the others need to be there as well.</P>
+<P>The long section contains the number of suits/values (ie 4/13 for a "normal" deck) and the height and width (in pixels I think) of each card (which BTW must all be the same size)</P>
+<P>The data section contains the card bitmaps.  In this section, the names do not really matter, just the indexes (although the names may be helpful for someone who is editing the resource).  The indici format is as follows:</P> 
+<P>	index = (card_suit*number_of_values) + card_value</P>
+<P>	where card_value and card_suit range from 0 to number of values/suits</P>
+
+<P></P>
+<HR>
+</FONT><B><FONT SIZE=4><P>Version Timeline</P>
+</B></FONT><FONT SIZE=2>
+
+<P>1.1 :deck resource wasn't fully compressed in 1.0... same functionality only now a smaller footprint</P>
+<P>2.0.5:rewritten, gui much prettier (I think) thanks to Interface Elements, can now have a different rule to/from every pile, also fixed a bug that cropped up during the move to R4 that wouldn't let you save layouts or open winsol layout, lost some functionality in card dragging (UF piles) and scoring due to deadlines, source prettified and distributed under the GNU license (see license.txt)</P>
+<P>2.1 :regain lost functionality in v2.0, save games in progress, seed random #generator so user can choose a particular shuffled deck</P>
+<P>3.0 :possibly extend the program to multiple players (local probably, though networked would be much better) this will probably entail a name change to BeCards or something (since Solitaire would't quite be appropriate anymore)</P>
+<P>4.0 :possibly implement some primitive AI or hooks for an AI program so that the computer can play cards</P>
+
+<P>Note:  I am not sure if any of the above will get done at all, much less when.</P>
+
+<HR>
+</FONT><B><FONT SIZE=4><P>Beginnings</P>
+</B></FONT><FONT SIZE=2>
+
+<P>This program started out as a project I had to do for a Collegium V (An Honors Class) Computer Science II class at the University of Texas at Dallas.  Rather than programming a simple rehash of Windows Solitaire with Microsoft Foundation Classes, I opted for programming a more complex version for Be since there was no other solitaire program for the platform that I knew of and the idea of editable card game seemed much neater.</P>
+</FONT></BODY>
+</HTML>
