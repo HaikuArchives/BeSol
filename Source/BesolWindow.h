@@ -27,6 +27,8 @@
 #include <View.h>
 #include <Beep.h>
 #include <SupportKit.h>
+#include <File.h>
+#include <Roster.h>
 
 #ifndef IEWINDOW
 #define IEWINDOW

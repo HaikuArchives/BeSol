@@ -238,7 +238,7 @@ void PILE::construction_helper(pile_props* props)
 PILE::~PILE()
 {
 	BMenuItem* item = popmenu->FindItem(POP_EDIT);
-	if ( item->IsMarked() ) peditor->Remove_Target(cast_as(this, BView));
+	if ( item->IsMarked() ) peditor->Remove_Target((BView*)this);
 
 	list< list<TRANSRULES*> >::iterator itert = allrules->begin();
 	list<TRANSRULES*>::iterator iterf;
@@ -685,7 +685,7 @@ void PILE::MessageReceived(BMessage* message)
 		{
 			BMenuItem* item = popmenu->FindItem(POP_EDIT);
 			item->SetMarked( !(item->IsMarked()) );
-			BView* temp = cast_as (this, BView);
+			BView* temp = (BView*)this;
 			isbeingedited = !isbeingedited;
 			Invalidate(Bounds());
 			
